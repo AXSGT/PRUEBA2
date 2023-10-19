@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>MAIN MENU</title>
+        <link rel="stylesheet" 
+              href="#{facesContext.externalContext.requestContextPath}/resources/css/default.css"/>
+        <link rel="stylesheet"
+              href="#{facesContext.externalContext.requestContextPath}/resources/css/theme.css"/>
+        <script type="text/javascript"
+                src="#{facesContext.externalContext.requestContextPath}/resources/js/script.js"/>
+        <style>
+            body {
+        background-image: url('#{resource['imagenes/fondo.png']}');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+        </style>
+
+        
+    </h:head>
+    <h:body>
+    <div style="text-align: center;">
+        <h1 style="font-size:60px; color: #FF0000;">MENU PRINCIPAL</h1>
+    </div>
+        <div>
+            <h:form>
+                <p:outputLabel value="#{bkn_Inicio.mensaje}" />
+                <br></br>
+                <p:panelGrid columns="2">     
+                    <p:outputLabel value="Clientes"/>
+                    <p:commandButton id="btnCliente" value="Visitar" action="Cliente.xhtml" icon="pi pi-arrow-right"/>
+                     <p:outputLabel value="Ordenes"/>
+                    <p:commandButton id="btnOrden" value="Visitar" action="Orden.xhtml" icon="pi pi-arrow-right"/>
+                     <p:outputLabel value="Detalle ordenes"/>
+                    <p:commandButton id="btnDetalle" value="Visitar" action="Detalles_ordenes.xhtml"    icon="pi pi-arrow-right"/>
+                    <p:outputLabel value="Productos"/>
+                    <p:commandButton id="btnProducto" value="Visitar" action="Producto.xhtml"   icon="pi pi-arrow-right"/>
+                </p:panelGrid>
+                <br></br>         
+            </h:form>
+        </div>
+
+    </h:body>
+</html>

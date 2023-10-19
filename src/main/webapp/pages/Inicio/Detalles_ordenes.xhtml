@@ -1,0 +1,86 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>DETALLES_ORDENES</title>
+        <h:outputScript name="script.js" library="js"/>
+        <h:outputStylesheet name="default.css" library="css"/> 
+        <h:outputStylesheet name="theme.css" library="css"/>
+        
+                <style>
+            body {
+                background-color: #000000;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23220000' points='1600 160 0 460 0 350 1600 50'/%3E%3Cpolygon fill='%23440000' points='1600 260 0 560 0 450 1600 150'/%3E%3Cpolygon fill='%23660000' points='1600 360 0 660 0 550 1600 250'/%3E%3Cpolygon fill='%23880000' points='1600 460 0 760 0 650 1600 350'/%3E%3Cpolygon fill='%23A00' points='1600 800 0 800 0 750 1600 450'/%3E%3C/g%3E%3C/svg%3E");
+                background-attachment: fixed;
+                background-size: cover;
+            }
+
+        </style>
+    </h:head>
+    <h:body>
+        <div style="text-align: center;">
+              <h1 style="font-size:80px; color: #228B22;"> <p:outputLabel value="Detalles de Ordenes"    class="contenedorFormulario"/></h1>
+        </div>
+      
+        <br></br>
+        <div class="contenedorFormulario">
+            <h:form id="formulario1" class="formulario">
+                <p:panelGrid columns="2">   
+
+                    <p:outputLabel value="Orden"/>
+                    <p:inputText id="txtOden" value="#{bkn_Inicio.dato9}"/>
+                    <p:outputLabel value="Producto"/>
+                    <p:inputText id="txtProducto" value="#{bkn_Inicio.dato10}"/>
+                    <p:outputLabel value="Cantidad"/>
+                    <p:inputText id="txtCantidad" value="#{bkn_Inicio.dato11}"/>
+                    <p:outputLabel value="Precio"/>
+                    <p:inputText id="txtPrecio" value="#{bkn_Inicio.dato12}"/>
+                    <p:commandButton id="btnInsertar" value="Agregar" action="#{bkn_Inicio.accionesDetalle_ordenes(1)}" update="tblLista, formulario1" disabled="#{bkn_Inicio.band}"    icon="pi pi-plus" style="background-color: green !important; color: white !important;"  />
+                    <p:commandButton id="btnActualizar" value="Actualizar" action="#{bkn_Inicio.accionesDetalle_ordenes(2)}" update="tblLista, formulario1" icon="pi pi-pencil" style="background-color: blue !important; color: white !important;" />
+                    <p:commandButton id="btnEliminar" value="Eliminar" action="#{bkn_Inicio.accionesDetalle_ordenes(3)}" update="tblLista, formulario1" icon="pi pi-trash" style="background-color: red !important; color: white !important;"/>   
+                    <p:commandButton id="btnInicio" value="Inicio" action="InicioUI.xhtml"  icon="pi pi-home" style="background-color: lightgray !important; color: black !important;"/>
+                </p:panelGrid>
+            </h:form>
+        </div>
+        <br></br>
+
+        <p:dataTable id="tblLista" value="#{bkn_Inicio.detalleOrdenes}" var="item" selection="#{bkn_Inicio.orden}" rowKey="#{item.id}" lazy="true" selectionMode="single">
+            <p:ajax event="rowSelect" listener="#{bkn_Inicio.detalleSeleccionado}" update="formulario1"/>
+            <p:ajax event="rowUnselect" listener="#{bkn_Inicio.onRowUnselect}" update="formulario1"/>
+            <p:column>
+                <f:facet name="header">
+                    ID
+                </f:facet>
+                <p:outputLabel value="#{item.id}"/> 
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    Orden   
+                </f:facet>
+                <p:outputLabel value="#{item.orden_id}"/> 
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    Producto
+                </f:facet>
+                <p:outputLabel value="#{item.producto_id}"/> 
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    Cantidad
+                </f:facet>
+                <p:outputLabel value="#{item.cantidad}"/> 
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    Precio
+                </f:facet>
+                <p:outputLabel value="#{item.precio}"/> 
+            </p:column>
+        </p:dataTable>
+
+
+    </h:body>
+</html>
